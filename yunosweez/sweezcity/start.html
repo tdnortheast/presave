@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Thanks for Presaving</title>
+<title>Redirecting</title>
 <style>
     * {
         box-sizing: border-box;
@@ -21,28 +21,16 @@
         text-align: center;
     }
 
-    h1 {
-        font-size: 56px;
-        font-weight: 700;
-        margin-bottom: 30px;
-    }
-
     p {
-        font-size: 28px;
-        line-height: 1.5;
-        max-width: 1000px;
-        margin-bottom: 60px;
+        font-size: 30px;
+        line-height: 1.6;
+        max-width: 1100px;
+        margin-bottom: 100px;
     }
 
-    .btn {
-        background: #3db8ff;
+    a {
         color: #fff;
-        text-decoration: none;
-        font-size: 28px;
-        padding: 24px 60px;
-        border-radius: 999px;
-        display: inline-block;
-        margin-bottom: 80px;
+        text-decoration: underline;
     }
 
     .logo {
@@ -54,22 +42,39 @@
 </head>
 <body>
 
-    <h1>Thanks for presaving!</h1>
-
-    <p>
-        $weezCity by Yuno $weez will automatically be added to your
-        library on release day (December 25, 2025).
+    <p id="countdownText">
+        You will be redirected to the presave page in 5 seconds.
+        If you are not redirected, click <a href="https://ffm.to/sweezcitypresave">here</a>.
     </p>
-
-    <a class="btn" href="https://www.tdnortheast.com/our-artists/yuno-sweez/sweezcity">
-        Back To Album Page
-    </a>
 
     <img
         class="logo"
         src="https://assets.tdnortheast.com/whitelogo.png"
         alt="TDNORTHEAST Logo"
     />
+
+<script>
+    let seconds = 5;
+    const text = document.getElementById("countdownText");
+    const url = "https://ffm.to/sweezcitypresave";
+
+    const interval = setInterval(() => {
+        seconds--;
+
+        if (seconds <= 0) {
+            window.location.href = url;
+            clearInterval(interval);
+            return;
+        }
+
+        const word = seconds === 1 ? "second" : "seconds";
+
+        text.innerHTML = `
+            You will be redirected to the presave page in ${seconds} ${word}.
+            If you are not redirected, click <a href="${url}">here</a>.
+        `;
+    }, 1000);
+</script>
 
 </body>
 </html>
